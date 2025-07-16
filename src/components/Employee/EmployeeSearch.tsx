@@ -27,13 +27,13 @@ export function EmployeeSearch({
               placeholder="Search employees..."
               value={searchTerm}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-10"
+              className="pl-10 w-96"
             />
           </div>
         </div>
         
         {/* BUG: Fixed width on mobile causes overflow */}
-        <div className="w-48">
+        <div className="w-96">
           <select
             value={filterDepartment}
             onChange={(e) => onDepartmentChange(e.target.value)}

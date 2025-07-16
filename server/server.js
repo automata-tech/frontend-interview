@@ -3,10 +3,20 @@ import cors from 'cors';
 
 const app = express();
 const PORT = 3333;
+const DELAY_MS = 1000; // Configurable delay in milliseconds
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Add artificial delay to all routes
+const delayMiddleware = (req, res, next) => {
+  setTimeout(() => {
+    next();
+  }, DELAY_MS);
+};
+
+app.use('/employees', delayMiddleware);
 
 // Basic logging middleware
 app.use((req, res, next) => {
