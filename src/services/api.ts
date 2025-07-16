@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com'
+const API_BASE_URL = 'http://localhost:3333'
 
 export class ApiClient {
   private readonly baseUrl: string
@@ -56,6 +56,11 @@ export class ApiClient {
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
+    // Handle 204 No Content response
+    if (response.status === 204) {
+      return {} as T
     }
     
     return response.json()
