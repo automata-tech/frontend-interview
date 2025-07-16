@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import { useNavigate } from '@tanstack/react-router'
-import { useCreateEmployee } from '../../hooks/useEmployees'
-import { Button } from '../ui/Button'
-import { Input } from '../ui/Input'
-import type { CreateEmployeeData } from '../../types/employee'
+import { useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { useCreateEmployee } from '../../hooks/useEmployees';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import type { CreateEmployeeData } from '../../types/employee';
 
 export function EmployeeForm() {
-  const navigate = useNavigate()
-  const createEmployee = useCreateEmployee()
-  
+  const navigate = useNavigate();
+  const createEmployee = useCreateEmployee();
+
   const [formData, setFormData] = useState<CreateEmployeeData>({
     name: '',
     email: '',
@@ -16,28 +16,28 @@ export function EmployeeForm() {
     department: '',
     role: '',
     hireDate: '',
-    salary: 0
-  })
+    salary: 0,
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     // BUG: Missing preventDefault - form doesn't work
     // e.preventDefault()
-    
+
     createEmployee.mutate(formData, {
       onSuccess: () => {
-        navigate({ to: '/' })
-      }
-    })
-  }
+        navigate({ to: '/' });
+      },
+    });
+  };
 
-  const handleInputChange = (field: keyof CreateEmployeeData) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: field === 'salary' ? Number(e.target.value) : e.target.value
-    }))
-  }
+  const handleInputChange =
+    (field: keyof CreateEmployeeData) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      setFormData((prev) => ({
+        ...prev,
+        [field]: field === 'salary' ? Number(e.target.value) : e.target.value,
+      }));
+    };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow">
@@ -45,7 +45,10 @@ export function EmployeeForm() {
         {/* BUG: Fixed grid layout breaks on mobile - should be responsive */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Name
             </label>
             <Input
@@ -57,9 +60,12 @@ export function EmployeeForm() {
               // required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Email
             </label>
             <Input
@@ -70,9 +76,12 @@ export function EmployeeForm() {
               required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Phone
             </label>
             <Input
@@ -83,9 +92,12 @@ export function EmployeeForm() {
               required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="department"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Department
             </label>
             <select
@@ -103,9 +115,12 @@ export function EmployeeForm() {
               <option value="Finance">Finance</option>
             </select>
           </div>
-          
+
           <div>
-            <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="role"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Role
             </label>
             <Input
@@ -116,9 +131,12 @@ export function EmployeeForm() {
               required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="hireDate" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="hireDate"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Hire Date
             </label>
             <Input
@@ -129,9 +147,12 @@ export function EmployeeForm() {
               required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="salary" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="salary"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Salary
             </label>
             <Input
@@ -144,7 +165,7 @@ export function EmployeeForm() {
             />
           </div>
         </div>
-        
+
         <div className="flex justify-end space-x-4">
           <Button
             type="button"
@@ -159,5 +180,5 @@ export function EmployeeForm() {
         </div>
       </form>
     </div>
-  )
+  );
 }

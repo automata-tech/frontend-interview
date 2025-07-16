@@ -1,5 +1,5 @@
-import { Link } from '@tanstack/react-router'
-import { Users, UserPlus } from 'lucide-react'
+import { Link } from '@tanstack/react-router';
+import { Users, UserPlus } from 'lucide-react';
 
 export function Header() {
   return (
@@ -17,13 +17,13 @@ export function Header() {
               </p>
             </div>
           </div>
-          
+
           <nav className="flex space-x-8">
             <Link
               to="/"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
               activeProps={{
-                className: "text-blue-600 bg-blue-50"
+                className: 'text-blue-600 bg-blue-50',
               }}
             >
               All Employees
@@ -39,5 +39,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

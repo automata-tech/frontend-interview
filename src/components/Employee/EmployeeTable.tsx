@@ -1,11 +1,18 @@
-import { Link } from '@tanstack/react-router'
-import type { Employee } from '../../types/employee'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/Table'
-import { Button } from '../ui/Button'
-import { Eye, Edit, Trash2 } from 'lucide-react'
+import { Link } from '@tanstack/react-router';
+import type { Employee } from '../../types/employee';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../ui/Table';
+import { Button } from '../ui/Button';
+import { Eye, Edit, Trash2 } from 'lucide-react';
 
 interface EmployeeTableProps {
-  employees: Employee[]
+  employees: Employee[];
 }
 
 export function EmployeeTable({ employees }: EmployeeTableProps) {
@@ -14,7 +21,7 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
       <div className="text-center py-8 text-gray-500">
         <p>No employees found</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -75,5 +82,5 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

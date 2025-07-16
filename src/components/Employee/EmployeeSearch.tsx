@@ -1,20 +1,20 @@
-import { Input } from '../ui/Input'
-import { Search } from 'lucide-react'
+import { Input } from '../ui/Input';
+import { Search } from 'lucide-react';
 
 interface EmployeeSearchProps {
-  searchTerm: string
-  onSearchChange: (term: string) => void
-  filterDepartment: string
-  onDepartmentChange: (department: string) => void
+  searchTerm: string;
+  onSearchChange: (term: string) => void;
+  filterDepartment: string;
+  onDepartmentChange: (department: string) => void;
 }
 
-const departments = ['Engineering', 'Marketing', 'Sales', 'HR', 'Finance']
+const departments = ['Engineering', 'Marketing', 'Sales', 'HR', 'Finance'];
 
 export function EmployeeSearch({
   searchTerm,
   onSearchChange,
   filterDepartment,
-  onDepartmentChange
+  onDepartmentChange,
 }: EmployeeSearchProps) {
   return (
     <div className="bg-white p-4 rounded-lg shadow space-y-4">
@@ -31,7 +31,7 @@ export function EmployeeSearch({
             />
           </div>
         </div>
-        
+
         {/* BUG: Fixed width on mobile causes overflow */}
         <div className="w-96">
           <select
@@ -40,12 +40,14 @@ export function EmployeeSearch({
             className="w-full h-9 px-3 py-1 rounded-md border border-input bg-background text-sm"
           >
             <option value="">All Departments</option>
-            {departments.map(dept => (
-              <option key={dept} value={dept}>{dept}</option>
+            {departments.map((dept) => (
+              <option key={dept} value={dept}>
+                {dept}
+              </option>
             ))}
           </select>
         </div>
       </div>
     </div>
-  )
+  );
 }
