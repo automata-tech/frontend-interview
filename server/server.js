@@ -3,7 +3,7 @@ import cors from 'cors';
 
 const app = express();
 const PORT = 3333;
-const DELAY_MS = 1000; // Configurable delay in milliseconds
+const DELAY_MS = 500; // Configurable delay in milliseconds
 
 // Middleware
 app.use(cors());

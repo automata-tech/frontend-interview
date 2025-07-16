@@ -2,11 +2,12 @@ import { useQuery, useMutation} from '@tanstack/react-query'
 import { employeeService } from '../services/employees'
 import type {CreateEmployeeData } from '../types/employee'
 
-export function useEmployees() {
+export function useEmployees(options: { enabled?: boolean } = {}) {
   return useQuery({
     queryKey: ['employees'],
     queryFn: employeeService.getEmployees,
     staleTime: 5 * 60 * 1000, // 5 minutes
+    ...options
   })
 }
 

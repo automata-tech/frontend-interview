@@ -1,13 +1,21 @@
 import { useEmployees } from '../../hooks/useEmployees'
+import { useEmployeeSearch } from '../../hooks/useEmployeeSearch'
 import { LoadingSpinner } from '../ui/LoadingSpinner'
 import { EmployeeTable } from './EmployeeTable'
 import { EmployeeSearch } from './EmployeeSearch'
 import { useState, useEffect } from 'react'
 
 export function EmployeeList() {
-  const { data: employees, isLoading, error } = useEmployees()
   const [searchTerm, setSearchTerm] = useState('')
   const [filterDepartment, setFilterDepartment] = useState('')
+  
+  const { data: allEmployees, isLoading: allLoading, error: allError } = useEmployees({ enabled: searchTerm.length === 0 })
+  const { data: searchResults, isLoading: searchLoading, error: searchError } = useEmployeeSearch(searchTerm)
+  
+  // Determine which data source to use
+  const employees = searchTerm.length > 0 ? searchResults : allEmployees
+  const isLoading = searchTerm.length > 0 ? searchLoading : allLoading
+  const error = searchTerm.length > 0 ? searchError : allError
 
   // BUG: Memory leak - missing cleanup in useEffect
   useEffect(() => {
@@ -49,10 +57,9 @@ export function EmployeeList() {
     // BUG: This expensive operation runs on every render
     console.log('Filtering employee:', employee.name) // Performance issue
     
-    const matchesSearch = employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.email.toLowerCase().includes(searchTerm.toLowerCase())
+    // Search is now handled server-side, only filter by department client-side
     const matchesDepartment = !filterDepartment || employee.department === filterDepartment
-    return matchesSearch && matchesDepartment
+    return matchesDepartment
   }) || []
 
   return (
