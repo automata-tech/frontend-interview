@@ -6,4 +6,5 @@ You will need two terminal windows to run this exercise, one to run the server a
 2. In terminal one run `pnpm run server`
 3. In terminal two run `pnpm run dev`
 4. Do your best attempt while trying to stay within the hour
-5. On the `dev` branch there's a whole list of issues and pointers, code is also annotated with comments.
+5. On the `dev` branch there's a whole list of issues and pointers in the README.md, code is also annotated with comments.
+
