@@ -7,7 +7,6 @@ export function useEmployeeSearch(searchTerm: string) {
     queryFn: async () => {
       const employees = await employeeService.getEmployees();
 
-      // BUG: No request cancellation - race condition possible
       // This could cause race conditions when user types quickly
       return employees.filter(
         (employee) =>

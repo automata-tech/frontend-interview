@@ -25,7 +25,6 @@ export function EmployeeList() {
   const isLoading = searchTerm.length > 0 ? searchLoading : allLoading;
   const error = searchTerm.length > 0 ? searchError : allError;
 
-  // BUG: Memory leak - missing cleanup in useEffect
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -36,13 +35,11 @@ export function EmployeeList() {
 
     document.addEventListener('keydown', handleKeyDown);
 
-    // BUG: Missing cleanup - memory leak
     // return () => {
     //   document.removeEventListener('keydown', handleKeyDown)
     // }
   }, []);
 
-  // BUG: Loading state never disappears - condition should be just isLoading
   if (isLoading || true) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -59,11 +56,8 @@ export function EmployeeList() {
     );
   }
 
-  // BUG: No debouncing - performance issue with unnecessary re-renders on every keystroke
-  // BUG: Expensive filter operation runs on every render
   const filteredEmployees =
     employees?.filter((employee) => {
-      // BUG: This expensive operation runs on every render
       console.log('Filtering employee:', employee.name); // Performance issue
 
       // Search is now handled server-side, only filter by department client-side

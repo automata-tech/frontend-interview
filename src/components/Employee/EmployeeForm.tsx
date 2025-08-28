@@ -20,7 +20,6 @@ export function EmployeeForm() {
   });
 
   const handleSubmit = (e: React.FormEvent) => {
-    // BUG: Missing preventDefault - form doesn't work
     // e.preventDefault()
 
     createEmployee.mutate(formData, {
@@ -42,7 +41,6 @@ export function EmployeeForm() {
   return (
     <div className="bg-white p-6 rounded-lg shadow">
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* BUG: Fixed grid layout breaks on mobile - should be responsive */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label
@@ -56,7 +54,6 @@ export function EmployeeForm() {
               type="text"
               value={formData.name}
               onChange={handleInputChange('name')}
-              // BUG: Missing form validation - allows empty fields
               // required
             />
           </div>

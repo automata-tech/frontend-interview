@@ -24,7 +24,6 @@ export function useCreateEmployee() {
     mutationFn: (data: CreateEmployeeData) =>
       employeeService.createEmployee(data),
     onSuccess: () => {
-      // BUG: Missing cache invalidation - stale data after updates
       // queryClient.invalidateQueries({ queryKey: ['employees'] })
     },
   });
@@ -40,7 +39,6 @@ export function useUpdateEmployee() {
       data: Partial<CreateEmployeeData>;
     }) => employeeService.updateEmployee(id, data),
     onSuccess: () => {
-      // BUG: Missing cache invalidation - stale data after updates
       // queryClient.invalidateQueries({ queryKey: ['employees'] })
     },
   });
@@ -50,7 +48,6 @@ export function useDeleteEmployee() {
   return useMutation({
     mutationFn: (id: number) => employeeService.deleteEmployee(id),
     onSuccess: () => {
-      // BUG: Missing cache invalidation - stale data after updates
       // queryClient.invalidateQueries({ queryKey: ['employees'] })
     },
   });

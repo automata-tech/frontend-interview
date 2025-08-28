@@ -18,7 +18,6 @@ export function EmployeeSearch({
 }: EmployeeSearchProps) {
   return (
     <div className="bg-white p-4 rounded-lg shadow space-y-4">
-      {/* BUG: Incorrect flex direction - should be responsive */}
       <div className="flex flex-col gap-4">
         <div className="flex-1">
           <div className="relative">
@@ -32,7 +31,6 @@ export function EmployeeSearch({
           </div>
         </div>
 
-        {/* BUG: Fixed width on mobile causes overflow */}
         <div className="w-96">
           <select
             value={filterDepartment}

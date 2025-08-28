@@ -25,12 +25,10 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
   }
 
   return (
-    // BUG: Missing overflow-x-auto causes horizontal scroll issues on mobile
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow>
-            {/* BUG: Fixed width headers don't wrap properly */}
             <TableHead className="w-48">Name</TableHead>
             <TableHead className="w-64">Email</TableHead>
             <TableHead className="w-32">Department</TableHead>
@@ -42,20 +40,11 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
         <TableBody>
           {employees.map((employee) => (
             <TableRow key={employee.id}>
-              <TableCell className="font-medium">
-                {/* BUG: No text truncation - long names will overflow */}
-                {employee.name}
-              </TableCell>
-              <TableCell>
-                {/* BUG: Email addresses can be very long and will overflow */}
-                {employee.email}
-              </TableCell>
+              <TableCell className="font-medium">{employee.name}</TableCell>
+              <TableCell>{employee.email}</TableCell>
               <TableCell>{employee.department}</TableCell>
               <TableCell>{employee.role}</TableCell>
-              <TableCell>
-                {/* BUG: Phone numbers display without formatting */}
-                {employee.phone}
-              </TableCell>
+              <TableCell>{employee.phone}</TableCell>
               <TableCell>
                 <div className="flex gap-2">
                   <Link
@@ -63,16 +52,13 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
                     params={{ employeeId: employee.id.toString() }}
                   >
                     <Button variant="outline" size="sm">
-                      {/* BUG: Missing accessibility - no alt text or aria-label */}
                       <Eye className="h-4 w-4" />
                     </Button>
                   </Link>
                   <Button variant="outline" size="sm">
-                    {/* BUG: Missing onClick handler - button doesn't work */}
                     <Edit className="h-4 w-4" />
                   </Button>
                   <Button variant="outline" size="sm">
-                    {/* BUG: Missing onClick handler - button doesn't work */}
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
