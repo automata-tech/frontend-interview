@@ -7,7 +7,6 @@ export function useEmployeeSearch(searchTerm: string) {
     queryFn: async () => {
       const employees = await employeeService.getEmployees();
 
-      // This could cause race conditions when user types quickly
       return employees.filter(
         (employee) =>
           employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -15,6 +14,6 @@ export function useEmployeeSearch(searchTerm: string) {
       );
     },
     enabled: searchTerm.length > 0,
-    staleTime: 0, // Always fresh search results
+    staleTime: 0, 
   });
 }

@@ -19,9 +19,7 @@ export function EmployeeForm() {
     salary: 0,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    // e.preventDefault()
-
+  const handleSubmit = () => {
     createEmployee.mutate(formData, {
       onSuccess: () => {
         navigate({ to: '/' });

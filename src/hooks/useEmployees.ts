@@ -24,7 +24,7 @@ export function useCreateEmployee() {
     mutationFn: (data: CreateEmployeeData) =>
       employeeService.createEmployee(data),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ['employees'] })
+      
     },
   });
 }
@@ -39,7 +39,7 @@ export function useUpdateEmployee() {
       data: Partial<CreateEmployeeData>;
     }) => employeeService.updateEmployee(id, data),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ['employees'] })
+      
     },
   });
 }
@@ -48,7 +48,7 @@ export function useDeleteEmployee() {
   return useMutation({
     mutationFn: (id: number) => employeeService.deleteEmployee(id),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ['employees'] })
+      
     },
   });
 }

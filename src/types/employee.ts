@@ -13,7 +13,6 @@ export interface Employee {
     name: string;
     catchPhrase: string;
   };
-  // Extended fields for interview purposes
   department: string;
   role: string;
   hireDate: string;

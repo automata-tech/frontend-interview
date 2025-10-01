@@ -20,7 +20,6 @@ export function EmployeeList() {
     error: searchError,
   } = useEmployeeSearch(searchTerm);
 
-  // Determine which data source to use
   const employees = searchTerm.length > 0 ? searchResults : allEmployees;
   const isLoading = searchTerm.length > 0 ? searchLoading : allLoading;
   const error = searchTerm.length > 0 ? searchError : allError;
@@ -35,9 +34,6 @@ export function EmployeeList() {
 
     document.addEventListener('keydown', handleKeyDown);
 
-    // return () => {
-    //   document.removeEventListener('keydown', handleKeyDown)
-    // }
   }, []);
 
   if (isLoading || true) {
@@ -58,9 +54,6 @@ export function EmployeeList() {
 
   const filteredEmployees =
     employees?.filter((employee) => {
-      console.log('Filtering employee:', employee.name); // Performance issue
-
-      // Search is now handled server-side, only filter by department client-side
       const matchesDepartment =
         !filterDepartment || employee.department === filterDepartment;
       return matchesDepartment;
